@@ -55,7 +55,7 @@ final class NetworkService {
     urlConstructor.path = "/gists"
         urlConstructor.queryItems = [
             URLQueryItem(name: "accept", value: "application/vnd.github.v3+json"),
-            URLQueryItem(name: "per_page", value: "10"),
+            URLQueryItem(name: "per_page", value: "20"),
             URLQueryItem(name: "since", value: "\(lastDate)")
         ]
     guard

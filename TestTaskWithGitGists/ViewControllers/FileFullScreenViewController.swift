@@ -39,9 +39,7 @@ class FileFullScreenViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         networkService.getCommitsGist(idGist: idGist) { [weak self] commits in
-            self?.commitsFile = commits
-            print(commits)
-        }
+            self?.commitsFile = commits        }
         fileNameLabel.text = fileName
         contenFileLabel.text = contentFile
         self.collectionView.register(UINib(

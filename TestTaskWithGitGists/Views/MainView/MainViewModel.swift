@@ -27,7 +27,7 @@ final class MainViewModel {
             case .success(let gistArray):
                 guard let self = self else { return }
                     self.gists = gistArray
-                    self.cellModel.value = self.viewModels()
+                self.cellModel.value = self.viewModels()
             case .failure(let error):
                 print(error)
             }
@@ -48,20 +48,20 @@ final class MainViewModel {
     func getGistForPrefetching() {
                 guard var nextFrom = self.gists.last?.createdAt else { return }
                 nextFrom = dateFormmater(lastDate: nextFrom)
-                var gistsArray = [Gist]()
                 networkService.getGistsWithTime(lastDate: nextFrom) { [weak self] gistsJSON in
                     guard let self = self else { return }
                     gistsJSON.forEach { gistJSON in
-                        if self.gists.contains(where: { $0.url == gistJSON.url }) {
-                           
+                        if self.gists.contains(where: { $0.id == gistJSON.id }) {
+                           print(true)
                        } else {
                            print(gistJSON)
-                            gistsArray.append(gistJSON)
+                           self.gists.append(gistJSON)
+                           self.cellModel.value = self.viewModels()
                        }
                     }
                     }
-        self.gists.insert(contentsOf: gistsArray, at: self.gists.count - 1)
-        self.cellModel.value = self.viewModels()
+//        self.gists.insert(contentsOf: gistsArray, at: self.gists.count)
+//        self.cellModel.value = self.viewModels()
     }
     
     func didSelectGist(_ gistViewModel: MainCellModel) {
@@ -92,7 +92,7 @@ final class MainViewModel {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         var date = dateFormatter.date(from: lastDate)!
-        date.addTimeInterval(-60 * 5)
+        date.addTimeInterval(-60 * 60 * 24)
         let dateString = dateFormatter.string(from: date)
         return dateString
     }
