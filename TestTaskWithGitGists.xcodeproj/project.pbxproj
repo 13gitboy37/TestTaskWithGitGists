@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF1D1F7F288F1AEC0056943B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D1F7E288F1AEC0056943B /* DateFormatter.swift */; };
 		AF26568A286DC19C00B84119 /* FileGist.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265689286DC19C00B84119 /* FileGist.swift */; };
 		AF26568C286DCC1F00B84119 /* GistCommits.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26568B286DCC1F00B84119 /* GistCommits.swift */; };
 		AF265690286DD11C00B84119 /* DetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26568E286DD11C00B84119 /* DetailViewCell.swift */; };
 		AF265691286DD11C00B84119 /* DetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF26568F286DD11C00B84119 /* DetailViewCell.xib */; };
-		AF265693286DF30600B84119 /* FileFullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265692286DF30600B84119 /* FileFullScreenViewController.swift */; };
+		AF265693286DF30600B84119 /* FileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265692286DF30600B84119 /* FileDetailViewController.swift */; };
 		AF265697286E202000B84119 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265696286E202000B84119 /* DetailViewModel.swift */; };
 		AF265699286E43F200B84119 /* MainCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265698286E43F200B84119 /* MainCellModel.swift */; };
-		AF26569B286E456800B84119 /* DetailGistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26569A286E456800B84119 /* DetailGistModel.swift */; };
+		AF26569B286E456800B84119 /* DetailGistCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26569A286E456800B84119 /* DetailGistCellModel.swift */; };
 		AF26569D286EDAA700B84119 /* ChangeStatusCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26569C286EDAA700B84119 /* ChangeStatusCommit.swift */; };
 		AF2656A1286F254300B84119 /* CommitsFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26569F286F254300B84119 /* CommitsFileCell.swift */; };
 		AF2656A2286F254300B84119 /* CommitsFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2656A0286F254300B84119 /* CommitsFileCell.xib */; };
@@ -36,14 +37,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF1D1F7E288F1AEC0056943B /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		AF265689286DC19C00B84119 /* FileGist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileGist.swift; sourceTree = "<group>"; };
 		AF26568B286DCC1F00B84119 /* GistCommits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistCommits.swift; sourceTree = "<group>"; };
 		AF26568E286DD11C00B84119 /* DetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCell.swift; sourceTree = "<group>"; };
 		AF26568F286DD11C00B84119 /* DetailViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewCell.xib; sourceTree = "<group>"; };
-		AF265692286DF30600B84119 /* FileFullScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFullScreenViewController.swift; sourceTree = "<group>"; };
+		AF265692286DF30600B84119 /* FileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDetailViewController.swift; sourceTree = "<group>"; };
 		AF265696286E202000B84119 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		AF265698286E43F200B84119 /* MainCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellModel.swift; sourceTree = "<group>"; };
-		AF26569A286E456800B84119 /* DetailGistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGistModel.swift; sourceTree = "<group>"; };
+		AF26569A286E456800B84119 /* DetailGistCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGistCellModel.swift; sourceTree = "<group>"; };
 		AF26569C286EDAA700B84119 /* ChangeStatusCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeStatusCommit.swift; sourceTree = "<group>"; };
 		AF26569F286F254300B84119 /* CommitsFileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsFileCell.swift; sourceTree = "<group>"; };
 		AF2656A0286F254300B84119 /* CommitsFileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitsFileCell.xib; sourceTree = "<group>"; };
@@ -77,31 +79,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AF26568D286DD0F500B84119 /* DetailView */ = {
+		128EC170288F00EF00431BCF /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				AF265696286E202000B84119 /* DetailViewModel.swift */,
-				AF265694286E200700B84119 /* DetailViewCell */,
+				AFF8D3DF286B0C9000E21FFF /* MainViewController.swift */,
+				AFF8D407286C6A2300E21FFF /* MainViewModel.swift */,
+				AFF8D406286C69FB00E21FFF /* Views */,
 			);
-			path = DetailView;
+			path = Main;
 			sourceTree = "<group>";
 		};
-		AF265694286E200700B84119 /* DetailViewCell */ = {
+		128EC171288F00F600431BCF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				AF4D7721286CA62D00D69B98 /* DetailGistViewController.swift */,
+				AF265696286E202000B84119 /* DetailViewModel.swift */,
+				AF26568D286DD0F500B84119 /* Views */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		128EC172288F010800431BCF /* FileDetail */ = {
+			isa = PBXGroup;
+			children = (
+				AF265692286DF30600B84119 /* FileDetailViewController.swift */,
+				AF26569E286F24F300B84119 /* Views */,
+			);
+			path = FileDetail;
+			sourceTree = "<group>";
+		};
+		128EC173288F027200431BCF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AFF8D3E1286B0C9000E21FFF /* Main.storyboard */,
+				AFF8D3E6286B0C9200E21FFF /* LaunchScreen.storyboard */,
+				AFF8D3E4286B0C9200E21FFF /* Assets.xcassets */,
+				AFF8D3E9286B0C9200E21FFF /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		128EC174288F08D500431BCF /* Cell Models */ = {
+			isa = PBXGroup;
+			children = (
+				AF26569A286E456800B84119 /* DetailGistCellModel.swift */,
+				AF265698286E43F200B84119 /* MainCellModel.swift */,
+			);
+			path = "Cell Models";
+			sourceTree = "<group>";
+		};
+		128EC175288F08E300431BCF /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				AFF8D3FE286B32C400E21FFF /* Gist.swift */,
+				AFF8D3FC286B32B000E21FFF /* OwnerGist.swift */,
+				AF265689286DC19C00B84119 /* FileGist.swift */,
+				AF26568B286DCC1F00B84119 /* GistCommits.swift */,
+				AF26569C286EDAA700B84119 /* ChangeStatusCommit.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		AF26568D286DD0F500B84119 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				AF26568E286DD11C00B84119 /* DetailViewCell.swift */,
 				AF26568F286DD11C00B84119 /* DetailViewCell.xib */,
 			);
-			path = DetailViewCell;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		AF26569E286F24F300B84119 /* CommitsFilesCollectionViewCell */ = {
+		AF26569E286F24F300B84119 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				AF26569F286F254300B84119 /* CommitsFileCell.swift */,
 				AF2656A0286F254300B84119 /* CommitsFileCell.xib */,
 			);
-			path = CommitsFilesCollectionViewCell;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		AFF8D3CF286B0C9000E21FFF = {
@@ -123,59 +177,40 @@
 		AFF8D3DA286B0C9000E21FFF /* TestTaskWithGitGists */ = {
 			isa = PBXGroup;
 			children = (
-				AFF8D409286C6AA100E21FFF /* Extension */,
-				AFF8D3F9286B29AA00E21FFF /* Service */,
+				AFF8D3F0286B14C100E21FFF /* App */,
+				AFF8D3EF286B148E00E21FFF /* Screens */,
 				AFF8D3F6286B1F1700E21FFF /* Models */,
-				AFF8D3F1286B179800E21FFF /* Views */,
-				AFF8D3F0286B14C100E21FFF /* Fundamentals */,
-				AFF8D3EF286B148E00E21FFF /* ViewControllers */,
-				AFF8D3E4286B0C9200E21FFF /* Assets.xcassets */,
-				AFF8D3E9286B0C9200E21FFF /* Info.plist */,
+				AFF8D3F9286B29AA00E21FFF /* Service */,
+				AFF8D409286C6AA100E21FFF /* Helpers */,
+				128EC173288F027200431BCF /* Resources */,
 			);
 			path = TestTaskWithGitGists;
 			sourceTree = "<group>";
 		};
-		AFF8D3EF286B148E00E21FFF /* ViewControllers */ = {
+		AFF8D3EF286B148E00E21FFF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				AFF8D3DF286B0C9000E21FFF /* MainViewController.swift */,
-				AF4D7721286CA62D00D69B98 /* DetailGistViewController.swift */,
-				AF265692286DF30600B84119 /* FileFullScreenViewController.swift */,
+				128EC170288F00EF00431BCF /* Main */,
+				128EC171288F00F600431BCF /* Detail */,
+				128EC172288F010800431BCF /* FileDetail */,
 			);
-			path = ViewControllers;
+			path = Screens;
 			sourceTree = "<group>";
 		};
-		AFF8D3F0286B14C100E21FFF /* Fundamentals */ = {
+		AFF8D3F0286B14C100E21FFF /* App */ = {
 			isa = PBXGroup;
 			children = (
 				AFF8D3DB286B0C9000E21FFF /* AppDelegate.swift */,
 				AFF8D3DD286B0C9000E21FFF /* SceneDelegate.swift */,
 			);
-			path = Fundamentals;
-			sourceTree = "<group>";
-		};
-		AFF8D3F1286B179800E21FFF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AF26569E286F24F300B84119 /* CommitsFilesCollectionViewCell */,
-				AFF8D406286C69FB00E21FFF /* MainView */,
-				AF26568D286DD0F500B84119 /* DetailView */,
-				AFF8D3E1286B0C9000E21FFF /* Main.storyboard */,
-				AFF8D3E6286B0C9200E21FFF /* LaunchScreen.storyboard */,
-			);
-			path = Views;
+			path = App;
 			sourceTree = "<group>";
 		};
 		AFF8D3F6286B1F1700E21FFF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AFF8D3FE286B32C400E21FFF /* Gist.swift */,
-				AFF8D3FC286B32B000E21FFF /* OwnerGist.swift */,
-				AF265689286DC19C00B84119 /* FileGist.swift */,
-				AF26568B286DCC1F00B84119 /* GistCommits.swift */,
-				AF265698286E43F200B84119 /* MainCellModel.swift */,
-				AF26569A286E456800B84119 /* DetailGistModel.swift */,
-				AF26569C286EDAA700B84119 /* ChangeStatusCommit.swift */,
+				128EC175288F08E300431BCF /* Responses */,
+				128EC174288F08D500431BCF /* Cell Models */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,44 +218,28 @@
 		AFF8D3F9286B29AA00E21FFF /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				AFF8D402286B486800E21FFF /* PhotoService */,
-				AFF8D405286B48EE00E21FFF /* NetworkService */,
+				AFF8D3FA286B29BC00E21FFF /* NetworkService.swift */,
+				AFF8D403286B487A00E21FFF /* PhotoService.swift */,
+				AF1D1F7E288F1AEC0056943B /* DateFormatter.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
 		};
-		AFF8D402286B486800E21FFF /* PhotoService */ = {
-			isa = PBXGroup;
-			children = (
-				AFF8D403286B487A00E21FFF /* PhotoService.swift */,
-			);
-			path = PhotoService;
-			sourceTree = "<group>";
-		};
-		AFF8D405286B48EE00E21FFF /* NetworkService */ = {
-			isa = PBXGroup;
-			children = (
-				AFF8D3FA286B29BC00E21FFF /* NetworkService.swift */,
-			);
-			path = NetworkService;
-			sourceTree = "<group>";
-		};
-		AFF8D406286C69FB00E21FFF /* MainView */ = {
+		AFF8D406286C69FB00E21FFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				AFF8D3F2286B17BA00E21FFF /* MainView.swift */,
 				AFF8D3F4286B1AB500E21FFF /* MainCell.swift */,
-				AFF8D407286C6A2300E21FFF /* MainViewModel.swift */,
 			);
-			path = MainView;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		AFF8D409286C6AA100E21FFF /* Extension */ = {
+		AFF8D409286C6AA100E21FFF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				AFF8D40A286C6AB000E21FFF /* Observable.swift */,
 			);
-			path = Extension;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,13 +327,14 @@
 				AF26568A286DC19C00B84119 /* FileGist.swift in Sources */,
 				AFF8D3FD286B32B000E21FFF /* OwnerGist.swift in Sources */,
 				AFF8D3F5286B1AB500E21FFF /* MainCell.swift in Sources */,
-				AF265693286DF30600B84119 /* FileFullScreenViewController.swift in Sources */,
+				AF265693286DF30600B84119 /* FileDetailViewController.swift in Sources */,
 				AF26568C286DCC1F00B84119 /* GistCommits.swift in Sources */,
 				AF26569D286EDAA700B84119 /* ChangeStatusCommit.swift in Sources */,
 				AF265699286E43F200B84119 /* MainCellModel.swift in Sources */,
+				AF1D1F7F288F1AEC0056943B /* DateFormatter.swift in Sources */,
 				AF265690286DD11C00B84119 /* DetailViewCell.swift in Sources */,
 				AFF8D3FB286B29BC00E21FFF /* NetworkService.swift in Sources */,
-				AF26569B286E456800B84119 /* DetailGistModel.swift in Sources */,
+				AF26569B286E456800B84119 /* DetailGistCellModel.swift in Sources */,
 				AF2656A1286F254300B84119 /* CommitsFileCell.swift in Sources */,
 				AFF8D408286C6A2300E21FFF /* MainViewModel.swift in Sources */,
 			);
@@ -465,7 +485,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZU4J9YA52M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TestTaskWithGitGists/Info.plist;
+				INFOPLIST_FILE = TestTaskWithGitGists/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -493,7 +513,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZU4J9YA52M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TestTaskWithGitGists/Info.plist;
+				INFOPLIST_FILE = TestTaskWithGitGists/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,25 +32,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rpr-Wk-exB">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rpr-Wk-exB">
                                 <rect key="frame" x="0.0" y="164" width="414" height="698"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dMU-Sh-rxT">
-                                    <size key="itemSize" width="320" height="100"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" sectionInsetReference="safeArea" id="dMU-Sh-rxT">
+                                    <size key="itemSize" width="130" height="130"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5e3-19-6pa">
-                                        <rect key="frame" x="47" y="0.0" width="320" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="v60-O3-cyw">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="vvF-Bh-tkd" id="g1i-eP-ei0"/>
                                     <outlet property="delegate" destination="vvF-Bh-tkd" id="fFV-aR-NzD"/>
@@ -123,10 +113,10 @@
             </objects>
             <point key="canvasLocation" x="-93" y="65"/>
         </scene>
-        <!--File Full Screen View Controller-->
+        <!--File Detail View Controller-->
         <scene sceneID="yen-Gd-T7o">
             <objects>
-                <viewController storyboardIdentifier="FileFullScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S65-Af-8qj" customClass="FileFullScreenViewController" customModule="TestTaskWithGitGists" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FileFullScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S65-Af-8qj" customClass="FileDetailViewController" customModule="TestTaskWithGitGists" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qDV-DF-fzp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

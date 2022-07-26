@@ -7,20 +7,15 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     //MARK: - Private properties
     
+#warning("ViewModel - поставщик данных это значит сервис убираем в него")
     private var photoService: PhotoService?
+    
+    //ViewModel - поставщик данные
     private let viewModel = MainViewModel()
-
-    private var gists: [MainCellModel] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.mainView.tableView.reloadData()
-            }
-        }
-    }
     
     private var isLoading: Bool = false
     
@@ -28,11 +23,8 @@ class MainViewController: UIViewController {
         return view as! MainView
     }
     
-    private struct Constants {
-        static let reuseIdentifier = "reuseId"
-    }
     
-    //MARK: - Lificycle
+    //MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
@@ -42,36 +34,45 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViews()
+        bindViewModel()
+        
+        viewModel.getGists()
+        photoService = PhotoService(container: mainView.tableView)
+    }
+    
+    //MARK: - Private
+    
+    private func setupViews() {
+        setupTableView()
+        setupRefreshControl()
+    }
+    
+    private func setupTableView() {
         self.navigationItem.title = "GitHub Gists"
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         mainView.tableView.prefetchDataSource = self
-        bindViewModel()
-        viewModel.getGists()
-        photoService = PhotoService(container: mainView.tableView)
-        mainView.tableView.register(MainCell.self, forCellReuseIdentifier: Constants.reuseIdentifier)
+        mainView.tableView.register(MainCell.self, forCellReuseIdentifier: "reuseId")
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupRefreshControl()
-    }
-    
-    //MARK: - Methods
     
     private func bindViewModel() {
         self.viewModel.cellModel.addObserver(self) { [weak self]  (gistJSON, _) in
-            self?.gists = gistJSON
+            DispatchQueue.main.async {
+                self?.mainView.tableView.reloadData()
+            }
         }
     }
     
-    fileprivate func setupRefreshControl() {
+    private func setupRefreshControl() {
         self.mainView.tableView.refreshControl = UIRefreshControl()
         self.mainView.tableView.refreshControl?.attributedTitle = NSAttributedString(string: "Обновление...")
         self.mainView.tableView.refreshControl?.tintColor = .gray
         self.mainView.tableView.refreshControl?.addTarget(self, action: #selector(refreshGists), for: .valueChanged)
-            }
+    }
     
+    //MARK: - Actions
     @objc func refreshGists() {
         self.viewModel.getGistForRefreshController()
         DispatchQueue.main.async {
@@ -84,7 +85,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentGist = self.gists[indexPath.row]
+        let currentGist = viewModel.cellModel.value[indexPath.row]
         viewModel.didSelectGist(currentGist)
     }
 }
@@ -93,29 +94,24 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        gists.count
+        viewModel.cellModel.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentGist = gists[indexPath.row]
+        let currentGist = viewModel.cellModel.value[indexPath.row]
         
-        let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: Constants.reuseIdentifier, for: indexPath)
+        let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: "reuseId", for: indexPath)
         
         guard let cell = dequeuedCell as? MainCell else {
             return dequeuedCell
         }
         
-        configure(cell: cell, with: currentGist, indexPath: indexPath)
+        guard let image = photoService?.photo(atIndexPath: indexPath, byUrl: currentGist.avatarURL)
+        else { return UITableViewCell () }
+        
+        cell.configure(with: currentGist, avatar: image)
         return cell
         
-    }
-    
-    private func configure(cell: MainCell, with gist: MainCellModel, indexPath: IndexPath) {
-        cell.nameGistLabel.text = gist.fileName
-        cell.userNameLabel.text = gist.userName
-        guard let currentAvatar = photoService?.photo(atIndexPath: indexPath, byUrl: gist.avatarURL)
-        else { return }
-        cell.avatarImage.image = currentAvatar
     }
 }
 
@@ -125,10 +121,10 @@ extension MainViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         guard let maxRow = indexPaths.map({ $0.row }).max() else { return }
         
-        if maxRow > gists.count - 2, !isLoading {
-                isLoading = true
+        if maxRow > viewModel.cellModel.value.count - 2, !isLoading {
+            isLoading = true
             viewModel.getGistForPrefetching()
-            }
-        isLoading = false
         }
+        isLoading = false
     }
+}

@@ -13,13 +13,13 @@ class DetailGistViewController: UIViewController {
     
     var viewModel: DetailViewModel?
     
-    private var filesGist = DetailGistModel(userName: "", avatarURL: "", files: []) {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
+//    private var filesGist = DetailGistCellModel(userName: "", avatarURL: "", files: []) {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//        }
+//    }
     
     private var photoService: PhotoService?
     
@@ -34,6 +34,14 @@ class DetailGistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        viewModel?.getGistContent()
+        bindViewModel()
+    }
+        
+    //MARK: - Methods
+    
+    private func setupUI() {
         view.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -41,31 +49,25 @@ class DetailGistViewController: UIViewController {
             nibName: "DetailViewCell",
             bundle: nil),
             forCellWithReuseIdentifier: "detailViewCell")
-        viewModel?.getGistContent()
-        bindViewModel()
         photoService = PhotoService(container: collectionView)
+        setupRefreshControl()
         userNameLabel.isHidden = true
         nameGistLabel.isHidden = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupRefreshControl()
-    }
-    
-    //MARK: - Methods
-    
     private func configureUI() {
         userNameLabel.isHidden = false
         nameGistLabel.isHidden = false
-        userNameLabel.text = filesGist.userName
-        nameGistLabel.text = filesGist.files.first?.filename
-        avatarImage.image = photoService?.photo(byUrl: filesGist.avatarURL)
+        userNameLabel.text = viewModel?.filesModel.value.userName
+        nameGistLabel.text = viewModel?.filesModel.value.files.first?.filename
+        avatarImage.image = photoService?.photo(byUrl: viewModel?.filesModel.value.avatarURL ?? "")
     }
     
     private func bindViewModel() {
         self.viewModel?.filesModel.addObserver(self, closure: { [weak self] (filesViewModel, _) in
-            self?.filesGist = filesViewModel
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
         })
     }
     
@@ -96,7 +98,7 @@ extension DetailGistViewController: UICollectionViewDelegate {
 
 extension DetailGistViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        filesGist.files.count
+        viewModel?.filesModel.value.files.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -106,7 +108,8 @@ extension DetailGistViewController: UICollectionViewDataSource {
         return UICollectionViewCell()
     }
         configureUI()
-        let currentFileGist = filesGist.files[indexPath.item]
+         guard let currentFileGist = viewModel?.filesModel.value.files[indexPath.item]
+            else { return UICollectionViewCell() }
         cell.configure(file: currentFileGist)
     return cell
     }

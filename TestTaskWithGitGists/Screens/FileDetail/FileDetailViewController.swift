@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FileFullScreenViewController: UIViewController {
+class FileDetailViewController: UIViewController {
     
     //MARK: - Properties
     
@@ -39,7 +39,7 @@ class FileFullScreenViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         networkService.getCommitsGist(idGist: idGist) { [weak self] commits in
-            self?.commitsFile = commits        }
+            self?.commitsFile = commits         }
         fileNameLabel.text = fileName
         contenFileLabel.text = contentFile
         self.collectionView.register(UINib(
@@ -51,18 +51,19 @@ class FileFullScreenViewController: UIViewController {
 
 //MARK: - CollectionView Delegate
 
-extension FileFullScreenViewController: UICollectionViewDelegate {
+extension FileDetailViewController: UICollectionViewDelegate {
     
 }
 
 //MARK: - CollectionView DataSource
 
-extension FileFullScreenViewController: UICollectionViewDataSource {
+extension FileDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         commitsFile.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "commitsFileCell", for: indexPath) as? CommitsFileCell
         else {
            return UICollectionViewCell()

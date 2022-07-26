@@ -8,8 +8,9 @@
 import Foundation
 
 final class NetworkService {
-
+    
     lazy var mySession = URLSession(configuration: configuration)
+    
     let configuration: URLSessionConfiguration = {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 10.0
@@ -24,14 +25,14 @@ final class NetworkService {
     }()
     
     func getGists(completion: @escaping (Result<[Gist],Error>) -> Void) {
-    urlConstructor.path = "/gists"
+        urlConstructor.path = "/gists"
         urlConstructor.queryItems = [
             URLQueryItem(name: "accept", value: "application/vnd.github.v3+json"),
             URLQueryItem(name: "per_page", value: "20"),
         ]
-    guard
-        let url = urlConstructor.url
-    else { return }
+        guard
+            let url = urlConstructor.url
+        else { return }
         let task = mySession.dataTask(with: url) { data, response, error in
             if let response = response as? HTTPURLResponse {
                 print(response.statusCode)
@@ -48,19 +49,19 @@ final class NetworkService {
                 completion(.success(gistResponse))
             }
         }
-            task.resume()
-        }
+        task.resume()
+    }
     
-    func getGistsWithTime(lastDate: String, completion: @escaping ([Gist]) -> Void) {
-    urlConstructor.path = "/gists"
+    func getGistsWithTime(page: Int, completion: @escaping ([Gist]) -> Void) {
+        urlConstructor.path = "/gists"
         urlConstructor.queryItems = [
             URLQueryItem(name: "accept", value: "application/vnd.github.v3+json"),
             URLQueryItem(name: "per_page", value: "20"),
-            URLQueryItem(name: "since", value: "\(lastDate)")
+            URLQueryItem(name: "page", value: "\(page)")
         ]
-    guard
-        let url = urlConstructor.url
-    else { return }
+        guard
+            let url = urlConstructor.url
+        else { return }
         let task = mySession.dataTask(with: url) { data, response, error in
             if let response = response as? HTTPURLResponse {
                 print(response.statusCode)
@@ -78,8 +79,8 @@ final class NetworkService {
                 completion((gistResponse))
             }
         }
-            task.resume()
-        }
+        task.resume()
+    }
     
     func getCommitsGist(idGist: String, completion: @escaping ([GistCommits]) -> Void) {
         urlConstructor.path = "/gists/\(idGist)/commits"
@@ -110,9 +111,9 @@ final class NetworkService {
     }
     
     func getGistContent(url: String, completion: @escaping (Gist) -> Void) {
-    guard
-        let url = URL(string: url)
-    else { return }
+        guard
+            let url = URL(string: url)
+        else { return }
         let task = mySession.dataTask(with: url) { data, response, error in
             if let response = response as? HTTPURLResponse {
                 print(response.statusCode)
@@ -129,7 +130,7 @@ final class NetworkService {
                 completion((gistResponse))
             }
         }
-            task.resume()
-        }
+        task.resume()
+    }
     
 }

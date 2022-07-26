@@ -24,7 +24,7 @@ class PhotoService {
     init(container: UITableView) {
         self.container = Table(table: container)
     }
-    
+
     init(container: UICollectionView) {
         self.container = Collection(collection: container)
     }
@@ -114,7 +114,7 @@ class PhotoService {
                 self.saveImageToCache(url: url, image: image)
             
                     DispatchQueue.main.async {
-                        self.container.reloadRow(atIndexPath: indexPath)
+//                        self.container.reloadRow(atIndexPath: indexPath)
                             }
                         }
                     })

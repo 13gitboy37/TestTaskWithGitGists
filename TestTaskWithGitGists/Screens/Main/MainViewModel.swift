@@ -15,7 +15,9 @@ final class MainViewModel {
     
     weak var viewController: UIViewController?
     
-    private var gists = [Gist]()
+    var gists = [Gist]()
+    
+    private var page = 1
     
     private let networkService = NetworkService()
     
@@ -26,7 +28,7 @@ final class MainViewModel {
             switch result {
             case .success(let gistArray):
                 guard let self = self else { return }
-                    self.gists = gistArray
+                self.gists = gistArray
                 self.cellModel.value = self.viewModels()
             case .failure(let error):
                 print(error)
@@ -35,36 +37,40 @@ final class MainViewModel {
     }
     
     func getGistForRefreshController() {
-        guard let lastDate = self.gists.first?.createdAt else { return }
-        networkService.getGistsWithTime(lastDate: lastDate) { [weak self] gistsJSON in
+        
+        networkService.getGists { [weak self] result in
             guard let self = self else { return }
-            if gistsJSON.first?.createdAt != self.gists.first?.createdAt && gistsJSON.first?.owner.login != self.gists.first?.owner.login {
-                self.gists.insert(contentsOf: gistsJSON, at: 0)
-                self.cellModel.value = self.viewModels()
+            switch result {
+            case .success(let gistsJSON):
+                if gistsJSON.first?.createdAt != self.gists.first?.createdAt && gistsJSON.first?.owner.login != self.gists.first?.owner.login {
+                    self.gists.insert(contentsOf: gistsJSON, at: 0)
+                    self.cellModel.value = self.viewModels()
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }
     
     func getGistForPrefetching() {
-                guard var nextFrom = self.gists.last?.createdAt else { return }
-                nextFrom = dateFormmater(lastDate: nextFrom)
-                networkService.getGistsWithTime(lastDate: nextFrom) { [weak self] gistsJSON in
-                    guard let self = self else { return }
-                    gistsJSON.forEach { gistJSON in
-                        if self.gists.contains(where: { $0.id == gistJSON.id }) {
-                           print(true)
-                       } else {
-                           print(gistJSON)
-                           self.gists.append(gistJSON)
-                           self.cellModel.value = self.viewModels()
-                       }
-                    }
-                    }
-//        self.gists.insert(contentsOf: gistsArray, at: self.gists.count)
-//        self.cellModel.value = self.viewModels()
+        page += 1
+        networkService.getGistsWithTime(page: page) { [weak self] gistsJSON in
+            guard let self = self else { return }
+            gistsJSON.forEach { gistJSON in
+                if self.gists.contains(where: { $0.id == gistJSON.id }) {
+                    print(true)
+                } else {
+                    print(gistJSON)
+                    self.gists.append(gistJSON)
+                    self.cellModel.value = self.viewModels()
+                }
+            }
+        }
     }
     
     func didSelectGist(_ gistViewModel: MainCellModel) {
+        
+#warning("Убрать подгрузку контроллера через storyboard и сделать через Xib")
         guard let gist = self.gist(with: gistViewModel) else { return }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailGistViewController = storyboard.instantiateViewController(withIdentifier: "DetailGistViewControllerID") as! DetailGistViewController
@@ -87,14 +93,4 @@ final class MainViewModel {
     private func gist(with viewModel: MainCellModel) -> Gist? {
         return self.gists.first { viewModel.url == $0.url }
     }
-    
-    private func dateFormmater(lastDate: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        var date = dateFormatter.date(from: lastDate)!
-        date.addTimeInterval(-60 * 60 * 24)
-        let dateString = dateFormatter.string(from: date)
-        return dateString
-    }
-
 }

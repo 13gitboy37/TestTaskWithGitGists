@@ -8,27 +8,27 @@
 import UIKit
 
 final class MainView: UIView {
-   
+    
     //MARK: - Subviews
     
     let tableView = UITableView()
     
     let viewModel = MainViewModel()
-
+    
     //MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.configureUI()
     }
-
+    
     // MARK: - UI
-
+    
     private func configureUI() {
         self.backgroundColor = .white
         self.addTableView()
@@ -41,7 +41,7 @@ final class MainView: UIView {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.isHidden = false
         self.addSubview(self.tableView)
-        }
+    }
     
     private func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide
@@ -51,7 +51,6 @@ final class MainView: UIView {
             self.tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-    
-            ])
+        ])
     }
 }
