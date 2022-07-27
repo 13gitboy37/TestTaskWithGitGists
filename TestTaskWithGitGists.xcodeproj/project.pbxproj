@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		AF1D1F7F288F1AEC0056943B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D1F7E288F1AEC0056943B /* DateFormatter.swift */; };
+		AF1D1F8528914A000056943B /* AppStartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D1F8428914A000056943B /* AppStartManager.swift */; };
+		AF1D1F8A2891544E0056943B /* DetailsGistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D1F882891544E0056943B /* DetailsGistViewController.swift */; };
+		AF1D1F8B2891544E0056943B /* DetailsGistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF1D1F892891544E0056943B /* DetailsGistViewController.xib */; };
+		AF1D1F9228915DE30056943B /* FileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D1F9028915DE30056943B /* FileDetailsViewController.swift */; };
+		AF1D1F9328915DE30056943B /* FileDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF1D1F9128915DE30056943B /* FileDetailsViewController.xib */; };
 		AF26568A286DC19C00B84119 /* FileGist.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265689286DC19C00B84119 /* FileGist.swift */; };
 		AF26568C286DCC1F00B84119 /* GistCommits.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26568B286DCC1F00B84119 /* GistCommits.swift */; };
 		AF265690286DD11C00B84119 /* DetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26568E286DD11C00B84119 /* DetailViewCell.swift */; };
@@ -19,11 +24,8 @@
 		AF26569D286EDAA700B84119 /* ChangeStatusCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26569C286EDAA700B84119 /* ChangeStatusCommit.swift */; };
 		AF2656A1286F254300B84119 /* CommitsFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26569F286F254300B84119 /* CommitsFileCell.swift */; };
 		AF2656A2286F254300B84119 /* CommitsFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2656A0286F254300B84119 /* CommitsFileCell.xib */; };
-		AF4D7722286CA62D00D69B98 /* DetailGistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4D7721286CA62D00D69B98 /* DetailGistViewController.swift */; };
 		AFF8D3DC286B0C9000E21FFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF8D3DB286B0C9000E21FFF /* AppDelegate.swift */; };
-		AFF8D3DE286B0C9000E21FFF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF8D3DD286B0C9000E21FFF /* SceneDelegate.swift */; };
 		AFF8D3E0286B0C9000E21FFF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF8D3DF286B0C9000E21FFF /* MainViewController.swift */; };
-		AFF8D3E3286B0C9000E21FFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFF8D3E1286B0C9000E21FFF /* Main.storyboard */; };
 		AFF8D3E5286B0C9200E21FFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFF8D3E4286B0C9200E21FFF /* Assets.xcassets */; };
 		AFF8D3E8286B0C9200E21FFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFF8D3E6286B0C9200E21FFF /* LaunchScreen.storyboard */; };
 		AFF8D3F3286B17BA00E21FFF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF8D3F2286B17BA00E21FFF /* MainView.swift */; };
@@ -38,6 +40,11 @@
 
 /* Begin PBXFileReference section */
 		AF1D1F7E288F1AEC0056943B /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		AF1D1F8428914A000056943B /* AppStartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartManager.swift; sourceTree = "<group>"; };
+		AF1D1F882891544E0056943B /* DetailsGistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsGistViewController.swift; sourceTree = "<group>"; };
+		AF1D1F892891544E0056943B /* DetailsGistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsGistViewController.xib; sourceTree = "<group>"; };
+		AF1D1F9028915DE30056943B /* FileDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDetailsViewController.swift; sourceTree = "<group>"; };
+		AF1D1F9128915DE30056943B /* FileDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileDetailsViewController.xib; sourceTree = "<group>"; };
 		AF265689286DC19C00B84119 /* FileGist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileGist.swift; sourceTree = "<group>"; };
 		AF26568B286DCC1F00B84119 /* GistCommits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistCommits.swift; sourceTree = "<group>"; };
 		AF26568E286DD11C00B84119 /* DetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCell.swift; sourceTree = "<group>"; };
@@ -49,12 +56,9 @@
 		AF26569C286EDAA700B84119 /* ChangeStatusCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeStatusCommit.swift; sourceTree = "<group>"; };
 		AF26569F286F254300B84119 /* CommitsFileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsFileCell.swift; sourceTree = "<group>"; };
 		AF2656A0286F254300B84119 /* CommitsFileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitsFileCell.xib; sourceTree = "<group>"; };
-		AF4D7721286CA62D00D69B98 /* DetailGistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGistViewController.swift; sourceTree = "<group>"; };
 		AFF8D3D8286B0C9000E21FFF /* TestTaskWithGitGists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTaskWithGitGists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFF8D3DB286B0C9000E21FFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AFF8D3DD286B0C9000E21FFF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AFF8D3DF286B0C9000E21FFF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		AFF8D3E2286B0C9000E21FFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFF8D3E4286B0C9200E21FFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFF8D3E7286B0C9200E21FFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFF8D3E9286B0C9200E21FFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,8 +96,9 @@
 		128EC171288F00F600431BCF /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				AF4D7721286CA62D00D69B98 /* DetailGistViewController.swift */,
 				AF265696286E202000B84119 /* DetailViewModel.swift */,
+				AF1D1F882891544E0056943B /* DetailsGistViewController.swift */,
+				AF1D1F892891544E0056943B /* DetailsGistViewController.xib */,
 				AF26568D286DD0F500B84119 /* Views */,
 			);
 			path = Detail;
@@ -104,6 +109,8 @@
 			children = (
 				AF265692286DF30600B84119 /* FileDetailViewController.swift */,
 				AF26569E286F24F300B84119 /* Views */,
+				AF1D1F9028915DE30056943B /* FileDetailsViewController.swift */,
+				AF1D1F9128915DE30056943B /* FileDetailsViewController.xib */,
 			);
 			path = FileDetail;
 			sourceTree = "<group>";
@@ -111,7 +118,6 @@
 		128EC173288F027200431BCF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AFF8D3E1286B0C9000E21FFF /* Main.storyboard */,
 				AFF8D3E6286B0C9200E21FFF /* LaunchScreen.storyboard */,
 				AFF8D3E4286B0C9200E21FFF /* Assets.xcassets */,
 				AFF8D3E9286B0C9200E21FFF /* Info.plist */,
@@ -201,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				AFF8D3DB286B0C9000E21FFF /* AppDelegate.swift */,
-				AFF8D3DD286B0C9000E21FFF /* SceneDelegate.swift */,
+				AF1D1F8428914A000056943B /* AppStartManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -301,10 +307,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFF8D3E8286B0C9200E21FFF /* LaunchScreen.storyboard in Resources */,
+				AF1D1F9328915DE30056943B /* FileDetailsViewController.xib in Resources */,
 				AF265691286DD11C00B84119 /* DetailViewCell.xib in Resources */,
 				AFF8D3E5286B0C9200E21FFF /* Assets.xcassets in Resources */,
+				AF1D1F8B2891544E0056943B /* DetailsGistViewController.xib in Resources */,
 				AF2656A2286F254300B84119 /* CommitsFileCell.xib in Resources */,
-				AFF8D3E3286B0C9000E21FFF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,15 +322,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1D1F8528914A000056943B /* AppStartManager.swift in Sources */,
 				AF265697286E202000B84119 /* DetailViewModel.swift in Sources */,
 				AFF8D404286B487A00E21FFF /* PhotoService.swift in Sources */,
 				AFF8D3F3286B17BA00E21FFF /* MainView.swift in Sources */,
 				AFF8D3E0286B0C9000E21FFF /* MainViewController.swift in Sources */,
 				AFF8D3FF286B32C500E21FFF /* Gist.swift in Sources */,
+				AF1D1F8A2891544E0056943B /* DetailsGistViewController.swift in Sources */,
+				AF1D1F9228915DE30056943B /* FileDetailsViewController.swift in Sources */,
 				AFF8D40B286C6AB000E21FFF /* Observable.swift in Sources */,
-				AF4D7722286CA62D00D69B98 /* DetailGistViewController.swift in Sources */,
 				AFF8D3DC286B0C9000E21FFF /* AppDelegate.swift in Sources */,
-				AFF8D3DE286B0C9000E21FFF /* SceneDelegate.swift in Sources */,
 				AF26568A286DC19C00B84119 /* FileGist.swift in Sources */,
 				AFF8D3FD286B32B000E21FFF /* OwnerGist.swift in Sources */,
 				AFF8D3F5286B1AB500E21FFF /* MainCell.swift in Sources */,
@@ -343,14 +351,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AFF8D3E1286B0C9000E21FFF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AFF8D3E2286B0C9000E21FFF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AFF8D3E6286B0C9200E21FFF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -488,7 +488,6 @@
 				INFOPLIST_FILE = TestTaskWithGitGists/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -516,7 +515,6 @@
 				INFOPLIST_FILE = TestTaskWithGitGists/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

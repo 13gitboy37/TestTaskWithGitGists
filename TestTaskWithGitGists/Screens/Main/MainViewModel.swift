@@ -72,8 +72,7 @@ final class MainViewModel {
         
 #warning("Убрать подгрузку контроллера через storyboard и сделать через Xib")
         guard let gist = self.gist(with: gistViewModel) else { return }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailGistViewController = storyboard.instantiateViewController(withIdentifier: "DetailGistViewControllerID") as! DetailGistViewController
+        let detailGistViewController = DetailsGistViewController()
         let detailViewModel = DetailViewModel(gist: gist, viewController: detailGistViewController)
         detailGistViewController.viewModel = detailViewModel
         

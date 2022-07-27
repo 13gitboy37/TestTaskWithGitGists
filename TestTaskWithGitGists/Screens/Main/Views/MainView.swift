@@ -11,9 +11,14 @@ final class MainView: UIView {
     
     //MARK: - Subviews
     
-    let tableView = UITableView()
-    
-    let viewModel = MainViewModel()
+    private(set) lazy var tableView: UITableView = {
+        var tableView = UITableView()
+        tableView.rowHeight = 72.0
+        tableView.separatorInset = UIEdgeInsets(top: 0.0, left: 12.0, bottom: 0.0, right: 0.0)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.isHidden = false
+        return tableView
+    }()
     
     //MARK: - Init
     
@@ -31,16 +36,8 @@ final class MainView: UIView {
     
     private func configureUI() {
         self.backgroundColor = .white
-        self.addTableView()
+        self.addSubview(tableView)
         self.setupConstraints()
-    }
-    
-    private func addTableView() {
-        self.tableView.rowHeight = 72.0
-        self.tableView.separatorInset = UIEdgeInsets(top: 0.0, left: 12.0, bottom: 0.0, right: 0.0)
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.isHidden = false
-        self.addSubview(self.tableView)
     }
     
     private func setupConstraints() {

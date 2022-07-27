@@ -99,15 +99,14 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentGist = viewModel.cellModel.value[indexPath.row]
+        guard let image = photoService?.photo(atIndexPath: indexPath, byUrl: currentGist.avatarURL)
+        else { return UITableViewCell () }
         
         let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: "reuseId", for: indexPath)
         
         guard let cell = dequeuedCell as? MainCell else {
             return dequeuedCell
         }
-        
-        guard let image = photoService?.photo(atIndexPath: indexPath, byUrl: currentGist.avatarURL)
-        else { return UITableViewCell () }
         
         cell.configure(with: currentGist, avatar: image)
         return cell

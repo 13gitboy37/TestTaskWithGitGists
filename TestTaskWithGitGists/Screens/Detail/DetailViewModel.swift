@@ -64,12 +64,13 @@ final class DetailViewModel {
     }
     
     func didSelectFiles(indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let fullscreenviewController = storyboard.instantiateViewController(withIdentifier: "FileFullScreenViewController") as! FileDetailViewController
-        fullscreenviewController.fileName = "\(files[indexPath.item].filename)"
-        fullscreenviewController.contentFile = "\(files[indexPath.item].content ?? "")"
-        fullscreenviewController.idGist = "\(gist?.id ?? "")"
-        viewController?.present(fullscreenviewController, animated:true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let fullscreenviewController = storyboard.instantiateViewController(withIdentifier: "FileFullScreenViewController") as! FileDetailViewController
+        let fileDetailsViewController = FileDetailsViewController(nibName: "FileDetailsViewController", bundle: nil)
+        fileDetailsViewController.fileName = "\(files[indexPath.item].filename)"
+        fileDetailsViewController.contentFile = "\(files[indexPath.item].content ?? "")"
+        fileDetailsViewController.idGist = "\(gist?.id ?? "")"
+        viewController?.present(fileDetailsViewController, animated:true)
     }
     
     func viewModel() -> DetailGistCellModel {
