@@ -69,8 +69,6 @@ final class MainViewModel {
     }
     
     func didSelectGist(_ gistViewModel: MainCellModel) {
-        
-#warning("Убрать подгрузку контроллера через storyboard и сделать через Xib")
         guard let gist = self.gist(with: gistViewModel) else { return }
         let detailGistViewController = DetailsGistViewController()
         let detailViewModel = DetailViewModel(gist: gist, viewController: detailGistViewController)
