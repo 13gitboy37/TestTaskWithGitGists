@@ -13,8 +13,6 @@ class DetailsGistViewController: UIViewController {
     
     var viewModel: DetailViewModel?
     
-    private var photoService: PhotoService?
-    
     //MARK: - Outlets
     
     @IBOutlet weak var avatarUserImage: UIImageView!
@@ -41,7 +39,6 @@ class DetailsGistViewController: UIViewController {
             nibName: "DetailViewCell",
             bundle: nil),
             forCellWithReuseIdentifier: "detailViewCell")
-        photoService = PhotoService(container: collectionVIew)
         setupRefreshControl()
         userNameLabel.isHidden = true
         gistNameLabel.isHidden = true
@@ -52,7 +49,7 @@ class DetailsGistViewController: UIViewController {
         gistNameLabel.isHidden = false
         userNameLabel.text = viewModel?.filesModel.value.userName
         gistNameLabel.text = viewModel?.filesModel.value.files.first?.filename
-        avatarUserImage.image = photoService?.photo(byUrl: viewModel?.filesModel.value.avatarURL ?? "")
+        avatarUserImage.image = viewModel?.filesModel.value.avatarURL
     }
     
     private func bindViewModel() {

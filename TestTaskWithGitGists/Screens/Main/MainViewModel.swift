@@ -15,6 +15,8 @@ final class MainViewModel {
     
     weak var viewController: UIViewController?
     
+    let photoService = PhotoService()
+    
     var gists = [Gist]()
     
     private var page = 1
@@ -29,7 +31,10 @@ final class MainViewModel {
             case .success(let gistArray):
                 guard let self = self else { return }
                 self.gists = gistArray
-                self.cellModel.value = self.viewModels()
+                DispatchQueue.main.async {
+                    self.cellModel.value = self.viewModels()
+                }
+//                    self.cellModel.value = self.viewModels()
             case .failure(let error):
                 print(error)
             }
@@ -44,7 +49,9 @@ final class MainViewModel {
             case .success(let gistsJSON):
                 if gistsJSON.first?.createdAt != self.gists.first?.createdAt && gistsJSON.first?.owner.login != self.gists.first?.owner.login {
                     self.gists.insert(contentsOf: gistsJSON, at: 0)
-                    self.cellModel.value = self.viewModels()
+                    DispatchQueue.main.async {
+                        self.cellModel.value = self.viewModels()
+                    }
                 }
             case .failure(let error):
                 print(error)
@@ -62,7 +69,10 @@ final class MainViewModel {
                 } else {
                     print(gistJSON)
                     self.gists.append(gistJSON)
-                    self.cellModel.value = self.viewModels()
+                    DispatchQueue.main.async {
+                        self.cellModel.value = self.viewModels()
+                    }
+                    
                 }
             }
         }
@@ -78,13 +88,17 @@ final class MainViewModel {
     }
     
     private func viewModels() -> [MainCellModel] {
-        return self.gists.compactMap { gist -> MainCellModel in
-            return MainCellModel(url: gist.url,
-                                 userName: gist.owner.login,
-                                 avatarURL: gist.owner.avatarUrl,
-                                 createdAt: gist.createdAt,
-                                 fileName: gist.files.values.first?.filename ?? "")
-        }
+            return self.gists.compactMap { gist -> MainCellModel in
+                guard let image = photoService.photo(byUrl: gist.owner.avatarUrl)
+                else {
+                    return MainCellModel(url: "", userName: "", avatarURL: UIImage(), createdAt: "", fileName: "")
+                }
+                return MainCellModel(url: gist.url,
+                                     userName: gist.owner.login,
+                                     avatarURL: image,
+                                     createdAt: gist.createdAt,
+                                     fileName: gist.files.values.first?.filename ?? "")
+            }
     }
     
     private func gist(with viewModel: MainCellModel) -> Gist? {

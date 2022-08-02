@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 //Cell Model - модель подготовленная для ячейки
 
 struct DetailGistCellModel {
     let userName: String
-    let avatarURL: String
+    let avatarURL: UIImage
     let files: [FileGist]
 }

@@ -13,11 +13,12 @@ final class DetailViewModel {
     // MARK: - Properties
     
     let filesModel = Observable<DetailGistCellModel>(DetailGistCellModel(userName: "",
-                                                                         avatarURL: "",
+                                                                         avatarURL: UIImage(),
                                                                          files: []))
     
     var gist: Gist?
     
+    private let photoService = PhotoService()
     private let networkService = NetworkService()
     private var files = [FileGist]()
     
@@ -33,8 +34,8 @@ final class DetailViewModel {
     //MARK: - Methods
     
     private func refreshFiles() {
-        self.gist?.files.values.forEach({ fileGist in
-            self.files.append(fileGist)
+        gist?.files.values.forEach({ fileGist in
+            files.append(fileGist)
         })
     }
     
@@ -43,7 +44,9 @@ final class DetailViewModel {
             guard let self = self else { return }
             self.gist = content
             self.refreshFiles()
-            self.filesModel.value = self.viewModel()
+            DispatchQueue.main.async {
+                self.filesModel.value = self.viewModel()
+            }
         }
     }
     
@@ -57,15 +60,15 @@ final class DetailViewModel {
                 } else {
                     self.gist = gistRefresh
                     self.refreshFiles()
-                    self.filesModel.value = self.viewModel()
+                    DispatchQueue.main.async {
+                        self.filesModel.value = self.viewModel()
+                    }
                 }
             }
         }
     }
     
     func didSelectFiles(indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let fullscreenviewController = storyboard.instantiateViewController(withIdentifier: "FileFullScreenViewController") as! FileDetailViewController
         let fileDetailsViewController = FileDetailsViewController(nibName: "FileDetailsViewController", bundle: nil)
         fileDetailsViewController.fileName = "\(files[indexPath.item].filename)"
         fileDetailsViewController.contentFile = "\(files[indexPath.item].content ?? "")"
@@ -74,8 +77,13 @@ final class DetailViewModel {
     }
     
     func viewModel() -> DetailGistCellModel {
-        return DetailGistCellModel(userName: self.gist?.owner.login ?? "",
-                                   avatarURL: self.gist?.owner.avatarUrl ?? "",
-                                   files: self.files)
+        guard let image = photoService.photo(byUrl: gist?.owner.avatarUrl ?? "")
+        else {
+            return DetailGistCellModel(userName: "", avatarURL: UIImage(), files: [])
+        }
+        return DetailGistCellModel(userName: gist?.owner.login ?? "",
+                                   avatarURL: image,
+                                   files: files)
+        
     }
 }

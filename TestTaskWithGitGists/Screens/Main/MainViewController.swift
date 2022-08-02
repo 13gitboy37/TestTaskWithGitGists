@@ -11,10 +11,6 @@ final class MainViewController: UIViewController {
     
     //MARK: - Private properties
     
-#warning("ViewModel - поставщик данных это значит сервис убираем в него")
-    private var photoService: PhotoService?
-    
-    //ViewModel - поставщик данные
     private let viewModel = MainViewModel()
     
     private var isLoading: Bool = false
@@ -39,7 +35,6 @@ final class MainViewController: UIViewController {
         bindViewModel()
         
         viewModel.getGists()
-        photoService = PhotoService(container: mainView.tableView)
     }
     
     //MARK: - Private
@@ -98,9 +93,8 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let currentGist = viewModel.cellModel.value[indexPath.row]
-        guard let image = photoService?.photo(atIndexPath: indexPath, byUrl: currentGist.avatarURL)
-        else { return UITableViewCell () }
         
         let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: "reuseId", for: indexPath)
         
@@ -108,7 +102,7 @@ extension MainViewController: UITableViewDataSource {
             return dequeuedCell
         }
         
-        cell.configure(with: currentGist, avatar: image)
+        cell.configure(with: currentGist)
         return cell
         
     }

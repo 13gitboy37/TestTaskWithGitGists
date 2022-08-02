@@ -54,11 +54,10 @@ final class MainCell: UITableViewCell {
     
     // MARK: - Methods
     
-    #warning("Всегда прокидываем данные через configure - 1 модель cellModel")
-    func configure(with cellModel: MainCellModel, avatar: UIImage) {
-        self.nameGistLabel.text = cellModel.fileName
-        self.userNameLabel.text = cellModel.userName
-        self.avatarImage.image = avatar
+    func configure(with cellModel: MainCellModel) {
+        nameGistLabel.text = cellModel.fileName
+        userNameLabel.text = cellModel.userName
+        avatarImage.image = cellModel.avatarURL
     }
     
     private func setupViews() {
@@ -71,21 +70,21 @@ final class MainCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             nameGistLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8.0),
-            nameGistLabel.leftAnchor.constraint(equalTo: self.avatarImage.rightAnchor, constant: 10.0),
+            nameGistLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 10.0),
             nameGistLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
         ])
         
         NSLayoutConstraint.activate([
-            self.userNameLabel.topAnchor.constraint(equalTo: self.nameGistLabel.bottomAnchor, constant: 4.0),
-            self.userNameLabel.leftAnchor.constraint(equalTo: self.avatarImage.rightAnchor, constant: 10.0),
-            self.userNameLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
+            userNameLabel.topAnchor.constraint(equalTo: nameGistLabel.bottomAnchor, constant: 4.0),
+            userNameLabel.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 10.0),
+            userNameLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
         ])
         
         NSLayoutConstraint.activate([
-            self.avatarImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10.0),
-            self.avatarImage.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10.0),
-            self.avatarImage.widthAnchor.constraint(equalToConstant: 40),
-            self.avatarImage.heightAnchor.constraint(equalToConstant: 40)
+            avatarImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10.0),
+            avatarImage.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10.0),
+            avatarImage.widthAnchor.constraint(equalToConstant: 40),
+            avatarImage.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     

@@ -19,15 +19,15 @@ class PhotoService {
         return config
     }()
     
-    private let container: DataReloadable
+//    private let container: DataReloadable
     
-    init(container: UITableView) {
-        self.container = Table(table: container)
-    }
-
-    init(container: UICollectionView) {
-        self.container = Collection(collection: container)
-    }
+//    init(container: UITableView) {
+//        self.container = Table(table: container)
+//    }
+//
+//    init(container: UICollectionView) {
+//        self.container = Collection(collection: container)
+//    }
     
     private static let pathName: String = {
         let pathName = "images"
