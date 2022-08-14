@@ -89,13 +89,13 @@ final class MainViewModel {
     
     private func viewModels() -> [MainCellModel] {
             return self.gists.compactMap { gist -> MainCellModel in
-                guard let image = photoService.photo(byUrl: gist.owner.avatarUrl)
-                else {
-                    return MainCellModel(url: "", userName: "", avatarURL: UIImage(), createdAt: "", fileName: "")
-                }
+//                guard let image = photoService.photo(byUrl: gist.owner.avatarUrl)
+//                else {
+//                    return MainCellModel(url: "", userName: "", avatarURL: UIImage(systemName: "person")!, createdAt: "", fileName: "")
+//                }
                 return MainCellModel(url: gist.url,
                                      userName: gist.owner.login,
-                                     avatarURL: image,
+                                     avatarURL: photoService.photo(byUrl: gist.owner.avatarUrl) ?? UIImage(),
                                      createdAt: gist.createdAt,
                                      fileName: gist.files.values.first?.filename ?? "")
             }
