@@ -19,15 +19,15 @@ class PhotoService {
         return config
     }()
     
-    private let container: DataReloadable
+//    private let container: DataReloadable
     
-    init(container: UITableView) {
-        self.container = Table(table: container)
-    }
-
-    init(container: UICollectionView) {
-        self.container = Collection(collection: container)
-    }
+//    init(container: UITableView) {
+//        self.container = Table(table: container)
+//    }
+//
+//    init(container: UICollectionView) {
+//        self.container = Collection(collection: container)
+//    }
     
     private static let pathName: String = {
         let pathName = "images"
@@ -108,13 +108,14 @@ class PhotoService {
                guard let image = UIImage(data: data) else { return }
                 
             DispatchQueue.main.async {
-                self.images[url] = image
+//                self.images[url] = image
                     }
             
                 self.saveImageToCache(url: url, image: image)
             
                     DispatchQueue.main.async {
 //                        self.container.reloadRow(atIndexPath: indexPath)
+                        self.images[url] = image
                             }
                         }
                     })

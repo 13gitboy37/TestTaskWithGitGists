@@ -11,7 +11,7 @@ import UIKit
 struct MainCellModel {
     let url: String
     let userName: String
-    let avatarURL: String
+    let avatarURL: UIImage
     let createdAt: String
     let fileName: String
 }

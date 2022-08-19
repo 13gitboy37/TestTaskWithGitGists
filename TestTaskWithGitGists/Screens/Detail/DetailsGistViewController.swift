@@ -13,8 +13,6 @@ class DetailsGistViewController: UIViewController {
     
     var viewModel: DetailViewModel?
     
-    private var photoService: PhotoService?
-    
     //MARK: - Outlets
     
     @IBOutlet weak var avatarUserImage: UIImageView!
@@ -41,7 +39,6 @@ class DetailsGistViewController: UIViewController {
             nibName: "DetailViewCell",
             bundle: nil),
             forCellWithReuseIdentifier: "detailViewCell")
-        photoService = PhotoService(container: collectionVIew)
         setupRefreshControl()
         userNameLabel.isHidden = true
         gistNameLabel.isHidden = true
@@ -52,7 +49,7 @@ class DetailsGistViewController: UIViewController {
         gistNameLabel.isHidden = false
         userNameLabel.text = viewModel?.filesModel.value.userName
         gistNameLabel.text = viewModel?.filesModel.value.files.first?.filename
-        avatarUserImage.image = photoService?.photo(byUrl: viewModel?.filesModel.value.avatarURL ?? "")
+        avatarUserImage.image = viewModel?.filesModel.value.avatarURL
     }
     
     private func bindViewModel() {
@@ -104,6 +101,20 @@ extension DetailsGistViewController: UICollectionViewDataSource {
             else { return UICollectionViewCell() }
         cell.configure(file: currentFileGist)
     return cell
+    }
+}
+
+extension DetailsGistViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (UIScreen.main.bounds.width) - 6, height: (UIScreen.main.bounds.height / 8) - 6)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
     }
 }
 
