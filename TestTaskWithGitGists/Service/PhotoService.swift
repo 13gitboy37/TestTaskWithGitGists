@@ -107,9 +107,9 @@ class PhotoService {
             do {
                guard let image = UIImage(data: data) else { return }
                 
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
 //                self.images[url] = image
-                    }
+//                    }
             
                 self.saveImageToCache(url: url, image: image)
             

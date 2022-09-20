@@ -34,7 +34,6 @@ final class MainViewModel {
                 DispatchQueue.main.async {
                     self.cellModel.value = self.viewModels()
                 }
-//                    self.cellModel.value = self.viewModels()
             case .failure(let error):
                 print(error)
             }
